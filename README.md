@@ -56,7 +56,7 @@ Anthropic API <-- Mac server --POST--> Cloudflare Worker + KV <--GET-- M5GO
 ### 1. Get the code
 
 ```bash
-git clone https://github.com/<your-user>/claudemeter.git
+git clone https://github.com/sarfaraz187/claudemeter.git
 cd claudemeter
 cp .env.example .env
 ```
