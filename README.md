@@ -30,7 +30,7 @@ Anthropic API <-- Mac server --POST--> Cloudflare Worker + KV <--GET-- M5GO
 
 - The **Mac server** reads usage with your Claude Code login (kept in the keychain) every 20 minutes and pushes the percentages to the Worker.
 - The **Worker** stores the latest numbers and serves them over HTTPS to the M5.
-- The **M5** polls the Worker every minute and draws two bars plus a pace marker. The side LEDs flicker 4 times on each new update: green up to 50%, orange above 50%, red above 85% (session usage).
+- The **M5** polls the Worker every 5 minutes and draws two bars plus a pace marker. The side LEDs flicker 4 times on each new update: green up to 50%, orange above 50%, red above 85% (session usage).
 - Your Claude token never leaves the Mac. Cloudflare only holds percentages and reset times.
 
 ## Files
@@ -149,7 +149,7 @@ Settings are at the top of `m5_usage_single.py` and `claude_usage_server.py`:
 | Setting | Default | Meaning |
 |---|---|---|
 | `POLL_SECONDS` (server) | 1200 | How often the Mac asks Anthropic. Lower values risk HTTP 429. |
-| `POLL_SECONDS` (M5) | 60 | How often the M5 asks the Worker |
+| `POLL_SECONDS` (M5) | 300 | How often the M5 asks the Worker |
 | `LED_ORANGE_ABOVE_PERCENT` / `LED_RED_ABOVE_PERCENT` | 50 / 85 | LED color thresholds for the session |
 | `LED_FLICKER_COUNT` | 4 | Blinks per update |
 | `LED_BRIGHTNESS_SCALE` | 0.5 | LED brightness |

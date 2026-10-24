@@ -3,13 +3,13 @@
 Goal: show Claude Code session % and weekly % on an M5GO IoT Kit (ESP32, 320x240, UIFlow1 firmware v1.11.5), at home and away (library, phone hotspot).
 
 ```
-Anthropic API <-(20 min)- Mac server --POST--> Cloudflare Worker (+KV) <--GET (60s)-- M5GO
+Anthropic API <-(20 min)- Mac server --POST--> Cloudflare Worker (+KV) <--GET (5 min)-- M5GO
                           (also serves LAN /usage as a backup)
 ```
 
 ## Status (2026-10-24): working, including on the phone hotspot
 
-- M5 reads from the Cloudflare Worker over HTTPS (tested: HTTPS works on firmware 1.11.5).
+- M5 reads from the Cloudflare Worker over HTTPS every 5 minutes (tested: HTTPS works on firmware 1.11.5).
 - Wi-Fi list on the M5: home first, then hotspot. On the hotspot the bars can take a few minutes to appear after boot.
 - Script is saved on the M5 with UIFlow **Download**, so it starts at every power-up.
 
@@ -63,7 +63,7 @@ Anthropic API <-(20 min)- Mac server --POST--> Cloudflare Worker (+KV) <--GET (6
 
 ## Remaining
 
-1. First git commit (nothing committed yet).
+1. Optional: change the hotspot password (it is guessable from the public username).
 2. Edge cases to test: Mac asleep (Worker should flip to STALE after 60 min), expired token (401), Wi-Fi drop.
 3. Reboot test: after a Mac reboot and login, check `launchctl list | grep claude-usage` and that the Worker's `pushed_at` advances. The service starts at login, not boot.
 4. Optional: shorten the boot delay on the hotspot (shorter per-network timeout or hotspot first).
