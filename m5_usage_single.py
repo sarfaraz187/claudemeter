@@ -135,10 +135,10 @@ def flicker_led_bar(session_percent):
 
 def draw_data(data):
     draw_section(8, "Current session", data.get("session_pct"),
-                 data.get("session_reset_label") or data.get("session_reset_in"),
+                 data.get("session_reset_in") or data.get("session_reset_label"),
                  data.get("session_elapsed_pct"))
     draw_section(98, "Current week (all models)", data.get("week_pct"),
-                 data.get("week_reset_label") or data.get("week_reset_in"),
+                 data.get("week_reset_in") or data.get("week_reset_label"),
                  data.get("week_elapsed_pct"))
 
 
@@ -160,9 +160,9 @@ def refresh():
     if data.get("error"):
         draw_status("Err: " + str(data["error"]), RED)
     elif data.get("stale"):
-        draw_status("STALE - Mac asleep?", YELLOW)
+        draw_status("STALE - updated " + str(data.get("updated_ago", "?")), YELLOW)
     else:
-        draw_status("OK", GREEN)
+        draw_status("OK - updated " + str(data.get("updated_ago", "?")), GREEN)
 
 
 lcd.clear(BLACK)
