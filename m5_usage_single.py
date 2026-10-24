@@ -7,7 +7,7 @@ HOTSPOT_PASSWORD = "HOTSPOT_PASSWORD"
 WORKER_URL = "https://your-worker.workers.dev"
 READ_SECRET = "READ_SECRET"
 WIFI_NETWORKS = ((WIFI_SSID, WIFI_PASSWORD), (HOTSPOT_SSID, HOTSPOT_PASSWORD))
-POLL_SECONDS = 60
+POLL_SECONDS = 300
 # False = purple bars like Claude Code's /usage; True = green/yellow/red by percent
 USE_THRESHOLD_COLORS = False
 # --- END SETTINGS ---
