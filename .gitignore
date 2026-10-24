@@ -1,0 +1,7 @@
+.env
+*_flash.py
+__pycache__/
+.usage_cache.json
+.wrangler/
+node_modules/
+.serena/

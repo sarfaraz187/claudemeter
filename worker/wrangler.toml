@@ -1,0 +1,7 @@
+name = "claude-usage-relay"
+main = "index.js"
+compatibility_date = "2025-01-01"
+
+[[kv_namespaces]]
+binding = "USAGE"
+id = "ffe424818be94a8ba24783f39007bd81"
